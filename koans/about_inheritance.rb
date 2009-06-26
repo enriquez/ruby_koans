@@ -71,11 +71,6 @@ class AboutInheritance < EdgeCase::Koan
     assert_equal __, ralph.bark
   end
 
-  def test_super_does_not_work_cross_method
-    ralph = BullDog.new("Ralph")
-    
-  end
-
   # ------------------------------------------------------------------
 
   class GreatDane < Dog

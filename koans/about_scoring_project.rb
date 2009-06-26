@@ -45,26 +45,23 @@ def score(dice)
   end
   
   occurrences.each do |occurrence|
+    score_contribution = 0
     die = occurrence.first
     hits = occurrence.last
+    multiplier = die
     
-    if die == 1
-      if hits < 3
-        score += 100 * hits
-      else
-        score += 1000 + ((hits * 100) % 3)
-      end
-    elsif die == 5
-      if hits < 3
-        score += 50 * hits
-      else
-        score += 500 + (hits % 3) * 50
-      end
-    else
-      if hits >= 3
-        score += die * 100
-      end
+    hits_over_3 = hits % 3
+    multiplier = 10 if die == 1
+    
+    if hits >= 3
+      score_contribution += multiplier * 100
     end
+    
+    if hits_over_3 > 0 and (die == 1 or die == 5)
+      score_contribution += hits_over_3 * multiplier * 10
+    end
+    
+    score += score_contribution
   end
   
   score

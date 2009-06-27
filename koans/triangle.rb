@@ -26,16 +26,14 @@ def triangle(a, b, c)
 end
 
 def valid_sides?(a, b, c)
-  valid_sides = true
-  
   # check sides are positive
-  valid_sides = [a, b, c].find { |side| side > 0 }
+  sides_are_positive = [a, b, c].select { |side| side > 0 }.length == 3
   
   # check ratio between sides
   ordered_sides = [a, b, c].sort
-  valid_sides = (ordered_sides[0] + ordered_sides[1]) > ordered_sides[2]
+  sides_ratio_are_valid = (ordered_sides[0] + ordered_sides[1]) > ordered_sides[2]
   
-  valid_sides
+  sides_are_positive and sides_ratio_are_valid
 end
 
 # Error class used in part 2.  No need to change this code.

@@ -161,6 +161,9 @@ class AboutClassMethods < EdgeCase::Koan
   # Are there times you might prefer one over the other?
   
   # I prefer the first technique mostly because it is shorter.
+  
+  # Further investigation shows that the second technique allows for controlling the access to 
+  # methods (private/protected)
 
   # ------------------------------------------------------------------
 

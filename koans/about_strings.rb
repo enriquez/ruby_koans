@@ -101,6 +101,28 @@ EOS
     
     # At first glance, the plus equals operator may look like it is working with numbers as the operands.
     # For an interpreted language, it just _looks right_.
+    
+    # After further investigation, the shovel operator actually modifies the object while the plus equals
+    # operator creates a whole new string object.  See irb session below:
+    # >> original_string = "Hello, "
+    # => "Hello, "
+    # >> hi = original_string
+    # => "Hello, "
+    # >> original_string.object_id == hi.object_id
+    # => true
+    # >> there = "World"
+    # => "World"
+    # >> hi << there
+    # => "Hello, World"
+    # >> original_string.object_id == hi.object_id
+    # => true
+    # >> hi += there
+    # => "Hello, WorldWorld"
+    # >> original_string.object_id == hi.object_id
+    # => false
+    
+    # Therefore, the shovel operator makes use of memory more efficiently.
+
   end
 
   def test_double_quoted_string_interpret_escape_characters
